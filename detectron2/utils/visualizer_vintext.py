@@ -1073,7 +1073,7 @@ class Visualizer:
         color = 'w'
         # font_size = 7.0
         x, y = position
-        font_path = "vnfree.ttf"
+        font_path = "times.ttf"
         prop = mfm.FontProperties(fname=font_path)
         self.output.ax.text(
             x,
