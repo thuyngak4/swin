@@ -96,7 +96,7 @@ if __name__ == "__main__":
             # use PIL, to be consistent with evaluation
             img = read_image(path, format="BGR")
             start_time = time.time()
-            predictions, visualized_output = demo.run_on_image(img, args.confidence_threshold, path)
+            predictions, visualized_output, texts = demo.run_on_image(img, args.confidence_threshold, path)
             logger.info(
                 "{}: {} in {:.2f}s".format(
                     path,
@@ -120,6 +120,10 @@ if __name__ == "__main__":
                 if cv2.waitKey(0) == 27:
                     break  # esc to quit
             print(f"PREDICTION: {predictions}")
+
+            for i, text in enumerate(texts):
+                print(f"Instance {i}: {text}")
+
             
     elif args.webcam:
         assert args.input is None, "Cannot have both --input and --webcam!"
