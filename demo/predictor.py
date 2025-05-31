@@ -65,12 +65,6 @@ class VisualizationDemo(object):
                 instances = instances[instances.scores > confidence_threshold]
                 predictions["instances"] = instances
 
-                # ---- In ra text nhận diện ----
-                if hasattr(instances, "pred_rec"):  # giả sử pred_rec chứa mảng id cần decode
-                    for rec in instances.pred_rec:
-                        text = visualizer.overlay_instances._ctc_decode_recognition(rec.cpu().numpy())  # nếu rec là tensor
-                        print("Recognized text:", text)
-
                 vis_output = visualizer.draw_instance_predictions(predictions=instances, path=path)
 
         return predictions, vis_output

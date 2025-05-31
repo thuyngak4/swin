@@ -792,6 +792,7 @@ class Visualizer:
             if len(s) == 0:
                 s = ' '
             s = decoder(s)
+            print(s)
             return s
         num_instances = None
         if boxes is not None:
