@@ -64,25 +64,16 @@ class VisualizationDemo(object):
                 instances = predictions["instances"].to(self.cpu_device)
                 instances = instances[instances.scores > confidence_threshold]
                 predictions["instances"] = instances
+
+                # ---- In ra text nhận diện ----
+                if hasattr(instances, "pred_rec"):  # giả sử pred_rec chứa mảng id cần decode
+                    for rec in instances.pred_rec:
+                        text = visualizer.overlay_instances._ctc_decode_recognition(rec.cpu().numpy())  # nếu rec là tensor
+                        print("Recognized text:", text)
+
                 vis_output = visualizer.draw_instance_predictions(predictions=instances, path=path)
 
-        # return predictions, vis_output
-        # --------------------------------------------------
-        # Decode recognized text
-        recognized_texts = []
-        if "pred_rec" in predictions["instances"].get_fields():
-            pred_rec = predictions["instances"].get_fields()["pred_rec"]
-            
-            # Load vocab (sửa đường dẫn nếu cần)
-            with open("eng_cls_dict.txt", "r", encoding="utf-8") as f:
-                idx2char = [line.strip() for line in f]
-            
-            for seq in pred_rec:
-                text = ''.join([idx2char[i] for i in seq if i > 0])
-                recognized_texts.append(text)
-
-        return predictions, vis_output, recognized_texts
-    # ---------------------------------------------------
+        return predictions, vis_output
 
     def _frame_from_video(self, video):
         while video.isOpened():
