@@ -24,6 +24,14 @@ from detectron2.engine import AutogradProfiler, DefaultTrainer, default_argument
 from detectron2.evaluation import COCOEvaluator, verify_results, TextEvaluator
 from detectron2.solver.build import maybe_add_gradient_clipping
 
+from detectron2.data.datasets import register_coco_instances  # <-- thêm dòng này
+register_coco_instances(                                       # <-- và đoạn đăng ký
+    "totaltext_test",  
+    {},
+    "/kaggle/working/swin/vintext_coco/vintext/test.json",  
+    "/kaggle/working/swin/vintext_coco/vintext/test_images"  
+)
+
 from swints import SWINTSDatasetMapper, add_SWINTS_config
 
 
