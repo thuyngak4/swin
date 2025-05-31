@@ -121,9 +121,6 @@ if __name__ == "__main__":
                     break  # esc to quit
             print(f"PREDICTION: {predictions}")
 
-            for i, text in enumerate(texts):
-                print(f"Instance {i}: {text}")
-
             
     elif args.webcam:
         assert args.input is None, "Cannot have both --input and --webcam!"
