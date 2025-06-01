@@ -6,7 +6,7 @@ MODEL:
     NUM_CLASSES: 2
 DATASETS:
   TRAIN: ("totaltext_train",)
-  TEST:  ("totaltext_test",)
+  TEST:  ("vintext_test",)
 SOLVER:
   STEPS: (6000,)
   MAX_ITER: 10000

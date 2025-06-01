@@ -197,7 +197,7 @@ def get_tl_line_values_gt(line,LTRB=True,withTranscription=False,withConfidence=
         elif withConfidence:
             raise('not implemented')
         elif withTranscription:
-            ptr = line.strip().split(',####')
+            ptr = line.strip().split(',###')
             cors = ptr[0].split(',')
             recs = ptr[1].strip()
             assert(len(cors)%2 == 0), 'num cors should be even.'

@@ -9,6 +9,7 @@ import sys
 import math 
 
 from rapidfuzz import string_metric
+import numpy as np
 
 WORD_SPOTTING =True
 def evaluation_imports():
@@ -45,6 +46,9 @@ def validate_data(gtFilePath, submFilePath, evaluationParams):
                             Validates also that there are no missing files in the folder.
                             If some error detected, the method raises the error
     """
+    print("== GT zip file path:", gtFilePath)
+    print("== Submission zip file path:", submFilePath)
+
     gt = rrc_evaluation_funcs.load_zip_file(gtFilePath, evaluationParams['GT_SAMPLE_NAME_2_ID'])
     
     subm = rrc_evaluation_funcs.load_zip_file(submFilePath, evaluationParams['DET_SAMPLE_NAME_2_ID'], True)
